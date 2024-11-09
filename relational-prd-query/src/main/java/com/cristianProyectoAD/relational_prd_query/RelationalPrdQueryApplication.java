@@ -10,4 +10,6 @@ public class RelationalPrdQueryApplication {
 		SpringApplication.run(RelationalPrdQueryApplication.class, args);
 	}
 
+	//TODO: preparar registro para base de datos potgres
+
 }
