@@ -15,7 +15,7 @@ public class RegistroLibrosRestController {
         this.libroService = libroService;
     }
 
-    @PostMapping("/registrar")
+    @PostMapping("/guardar")
     public ResponseEntity<String> saveBooksPostgres(@RequestBody LibrosRegistroDTO registro) {
         libroService.saveBook(registro);
         return ResponseEntity.ok("Registro de libro en postgresSQL");
