@@ -1,4 +1,4 @@
-package com.cristianProyectoAD.relational_prd_query.registrolibros.repositorio;
+package com.cristianProyectoAD.relational_prd_query.repositorio;
 
 import com.cristianProyectoAD.relational_prd_query.registrolibros.modelo.Libros;
 import org.springframework.data.jpa.repository.JpaRepository;
