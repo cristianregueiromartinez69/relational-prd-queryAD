@@ -24,10 +24,8 @@ public class LibroService {
      * @param libro el libro ha guardar
      */
     public void saveBook(LibrosRegistroDTO libro) {
-        if(!librosRepositorio.existsByIsbn(libro.getIsbn())) {
             Libros librosGuardar = new Libros(libro.getIsbn(), libro.getAutor(),
                     libro.getNombre(), libro.getFechaLectura(), libro.getFechaRegistro());
             librosRepositorio.save(librosGuardar);
-        }
     }
 }
