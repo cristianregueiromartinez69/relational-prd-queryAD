@@ -1,7 +1,6 @@
 package com.cristianProyectoAD.relational_prd_query.registrolibros.servicio;
 
 import com.cristianProyectoAD.relational_prd_query.registrolibros.dto.LibrosRegistroDTO;
-import com.cristianProyectoAD.relational_prd_query.registrolibros.excepcion.DuplicateIsbnException;
 import com.cristianProyectoAD.relational_prd_query.registrolibros.modelo.Libros;
 import com.cristianProyectoAD.relational_prd_query.repositorio.LibrosRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +24,7 @@ public class LibroService {
      * @param libro el libro ha guardar
      */
     public void saveBook(LibrosRegistroDTO libro) {
-        if(librosRepositorio.existsByIsbn(libro.getIsbn())) {
-            throw new DuplicateIsbnException("El libro con el isbn ya existe y no puede ser registrado");
-        }
-        else{
+        if(!librosRepositorio.existsByIsbn(libro.getIsbn())) {
             Libros librosGuardar = new Libros(libro.getIsbn(), libro.getAutor(),
                     libro.getNombre(), libro.getFechaLectura(), libro.getFechaRegistro());
             librosRepositorio.save(librosGuardar);
