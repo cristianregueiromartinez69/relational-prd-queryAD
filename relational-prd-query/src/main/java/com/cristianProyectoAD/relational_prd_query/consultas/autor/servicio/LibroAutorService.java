@@ -1,5 +1,6 @@
 package com.cristianProyectoAD.relational_prd_query.consultas.autor.servicio;
 
+import com.cristianProyectoAD.relational_prd_query.excepciones.BookNotFoundException;
 import com.cristianProyectoAD.relational_prd_query.registrolibros.modelo.Libros;
 import com.cristianProyectoAD.relational_prd_query.repositorio.LibrosRepositorio;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,10 @@ public class LibroAutorService {
      * @return Una lista de libros asociados al autor proporcionado.
      */
     public List<Libros> getListLibrosByAutor(String autor){
-        return librosRepositorio.findByAutor(autor);
+        List<Libros> librosList = librosRepositorio.findByAutor(autor);
+        if(librosList.isEmpty()){
+            throw new BookNotFoundException("Lista de libros por autor inexistentes");
+        }
+        return librosList;
     }
 }

@@ -1,9 +1,8 @@
 package com.cristianProyectoAD.relational_prd_query.registrolibros.controlador;
 
 import com.cristianProyectoAD.relational_prd_query.registrolibros.dto.LibrosRegistroDTO;
-import com.cristianProyectoAD.relational_prd_query.registrolibros.excepcion.DuplicateIsbnException;
+import com.cristianProyectoAD.relational_prd_query.registrolibros.exception.DuplicateISbnException;
 import com.cristianProyectoAD.relational_prd_query.registrolibros.servicio.LibroService;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,13 +33,13 @@ public class RegistroLibrosRestController {
      */
     @PostMapping("/guardar")
     public ResponseEntity<String> saveBooksPostgres(@RequestBody LibrosRegistroDTO registro) {
-
-        libroService.saveBook(registro);
+        try{
+            libroService.saveBook(registro);
+        } catch (DuplicateISbnException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
         return ResponseEntity.ok("Registro de libro en postgresSQL");
     }
 
-    @ExceptionHandler(DuplicateIsbnException.class)
-    public ResponseEntity<String> handleDuplicateIsbnException(DuplicateIsbnException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
+
 }

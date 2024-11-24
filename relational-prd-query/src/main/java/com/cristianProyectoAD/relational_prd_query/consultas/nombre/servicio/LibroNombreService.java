@@ -1,5 +1,6 @@
 package com.cristianProyectoAD.relational_prd_query.consultas.nombre.servicio;
 
+import com.cristianProyectoAD.relational_prd_query.excepciones.BookNotFoundException;
 import com.cristianProyectoAD.relational_prd_query.registrolibros.modelo.Libros;
 import com.cristianProyectoAD.relational_prd_query.repositorio.LibrosRepositorio;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class LibroNombreService {
     }
 
     public List<Libros> getLibrosByNombre(String nombre) {
-        return librosRepositorio.findByNombre(nombre);
+        List<Libros> listaLibros = librosRepositorio.findByNombre(nombre);
+        if(listaLibros.isEmpty()){
+            throw new BookNotFoundException("Lista de libros por nombre no encontrado");
+        }
+        return listaLibros;
     }
 }
