@@ -21,7 +21,7 @@ public class LibroFechaRegistroRestController {
         this.libroFechaRegistroService = libroFechaRegistroService;
     }
 
-    @GetMapping("fecharegistro{fechaInicio}/{fechaFin}")
+    @GetMapping("fecharegistro/{fechaInicio}/{fechaFin}")
     public ResponseEntity<List<Libros>> getLibrosByFechaRegistro(@PathVariable LocalDate fechaInicio, @PathVariable LocalDate fechaFin) {
         List<Libros> librosListFechaR = libroFechaRegistroService.getLibrosByFechaRegistro(fechaInicio, fechaFin);
         return ResponseEntity.ok().body(librosListFechaR);
