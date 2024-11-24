@@ -40,11 +40,8 @@ public class LibroConsultaIsbnRestController {
      */
     @GetMapping("isbn{isbn}")
     public ResponseEntity<Libros> getLibroByIsbn(@PathVariable String isbn) {
-        try {
+
             Libros libro = libroIsbnService.getLibroByIsbn(isbn);
             return ResponseEntity.ok(libro);
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
     }
 }

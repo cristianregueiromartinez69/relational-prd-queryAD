@@ -1,5 +1,6 @@
 package com.cristianProyectoAD.relational_prd_query.consultas.isbn.servicio;
 
+import com.cristianProyectoAD.relational_prd_query.excepciones.BookNotFoundException;
 import com.cristianProyectoAD.relational_prd_query.registrolibros.modelo.Libros;
 import com.cristianProyectoAD.relational_prd_query.repositorio.LibrosRepositorio;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,10 @@ public class LibroIsbnService {
      * @return El libro encontrado con el ISBN especificado.
      */
     public Libros getLibroByIsbn(String isbn) {
-        return librosRepositorio.findByIsbn(isbn);
+        Libros libros = librosRepositorio.findByIsbn(isbn);
+        if(libros == null){
+            throw new BookNotFoundException("Este libro por isbn no existe");
+        }
+        return libros;
     }
 }
