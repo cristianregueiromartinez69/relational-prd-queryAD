@@ -10,6 +10,5 @@ public class RelationalPrdQueryApplication {
 		SpringApplication.run(RelationalPrdQueryApplication.class, args);
 	}
 
-	//TODO: preparar consultas para base de datos potgres por isbn
 
 }
