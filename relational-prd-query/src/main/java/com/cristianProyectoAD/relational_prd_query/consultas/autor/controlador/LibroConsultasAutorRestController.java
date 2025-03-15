@@ -17,7 +17,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/relational-prd-query/libros/consultas/")
+@RequestMapping("/relational-prd-query/libros/consultas")
 public class LibroConsultasAutorRestController {
 
     private final LibroAutorService libroAutorService;
@@ -37,7 +37,7 @@ public class LibroConsultasAutorRestController {
      * @param autor El nombre del autor de los libros a consultar.
      * @return ResponseEntity que contiene la lista de libros encontrados o un error si no se encuentran libros.
      */
-    @GetMapping("autor{autor}")
+    @GetMapping("/autor/{autor}")
     public ResponseEntity<List<Libros>> getLibrosByAutor(@PathVariable String autor) {
         List<Libros> librosByAutorList= libroAutorService.getListLibrosByAutor(autor);
         return ResponseEntity.ok(librosByAutorList);

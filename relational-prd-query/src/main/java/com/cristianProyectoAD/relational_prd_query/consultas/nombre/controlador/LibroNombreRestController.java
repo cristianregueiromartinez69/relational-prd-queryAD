@@ -19,7 +19,7 @@ import java.util.List;
  * @version 1.0
  */
 @RestController
-@RequestMapping("/relational-prd-query/libros/consultas/")
+@RequestMapping("/relational-prd-query/libros/consultas")
 public class LibroNombreRestController {
 
     private final LibroNombreService libroNombreService;
@@ -40,7 +40,7 @@ public class LibroNombreRestController {
      * @param nombre El nombre del libro a buscar.
      * @return Un {@link ResponseEntity} que contiene una lista de objetos {@link Libros} con los libros encontrados.
      */
-    @GetMapping("nombre{nombre}")
+    @GetMapping("/nombre/{nombre}")
     public ResponseEntity<List<Libros>> getLibrosByNombrePostgres(@PathVariable String nombre) {
         List<Libros> libros = libroNombreService.getLibrosByNombre(nombre);
         return ResponseEntity.ok(libros);
